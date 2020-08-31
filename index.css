@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 p,
 h1,
 h2 {
@@ -8,25 +12,57 @@ html {
   font-family: "Roboto", sans-serif;
 }
 
+.modal--open .modal__window {
+  opacity: 1;
+  z-index: 99;
+  transform: translateY(100px);
+}
+.modal--open .modal__overlay {
+  opacity: 1;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.5);
+}
 .modal__overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0);
+  z-index: -1;
+  opacity: 0;
+  transition: background 0.3s ease-in;
 }
 .modal__window {
-  width: 600px;
-  border-radius: 5px;
+  max-width: 600px;
   background: #FFFFFF;
-  height: 400px;
-  margin: 100px auto;
+  min-height: 632px;
+  margin: 0 auto;
+  padding: 40px 54px 35px 54px;
+  z-index: -1;
+  opacity: 0;
+  transform: translateY(-700px);
+  transition: transform 0.3s ease;
 }
-.modal__header {
-  padding: 5px;
+.modal__close {
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.open-button {
+  cursor: pointer;
+}
+
+.form__header {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+.form__title {
+  font-weight: 900;
+  font-size: 35px;
+  line-height: 41px;
+  color: #000000;
+  letter-spacing: 0.02em;
 }
 
 /*# sourceMappingURL=index.css.map */
