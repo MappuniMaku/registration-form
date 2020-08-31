@@ -77,6 +77,21 @@ html {
 .form__item-phone {
   margin-left: 12px;
 }
+.form__item-textarea {
+  margin-bottom: 30px;
+}
+.form__item--error {
+  margin-bottom: 17px;
+}
+.form__item--error .form__item-title {
+  color: #F36363;
+}
+.form__item--error .form__input {
+  border: 1px solid #F36363;
+}
+.form__item--error .form__error-text {
+  display: block;
+}
 .form__item-title {
   font-size: 12px;
   line-height: 14px;
@@ -93,12 +108,52 @@ html {
   border-radius: 5px;
   font-size: 16px;
   line-height: 22px;
-  padding: 20px;
+  padding-left: 20px;
   color: #1C1C1C;
 }
 .form__input-textarea {
   width: 492px;
   height: 150px;
+  resize: none;
+  padding-top: 13px;
+  background: #FAFAFA;
+}
+.form__error-text {
+  display: none;
+  font-size: 12px;
+  line-height: 14px;
+  color: #F36363;
+  margin-left: 20px;
+  margin-top: 3px;
+}
+.form__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form__privacy-note {
+  font-size: 13px;
+  line-height: 15px;
+  color: #1C1C1C;
+  max-width: 440px;
+  margin-bottom: 30px;
+  margin-left: -24px;
+}
+.form__link {
+  color: #1C1C1C;
+}
+.form__submit-button {
+  background: #F9C73B;
+  border-radius: 5px;
+  width: 220px;
+  height: 50px;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #151515;
 }
 
 /*# sourceMappingURL=index.css.map */

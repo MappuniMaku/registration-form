@@ -23,21 +23,31 @@
                         <label class="form__item form__item-name">
                             <p class="form__item-title">Имя</p>
                             <input type="text" name="name" value="Константин" class="form__input form__input-name" placeholder="Ваше имя" required>
+                            <p class="form__error-text">Имя является обязательным полем</p>
                         </label>
+                        
                         <label class="form__item form__item-phone">
                             <p class="form__item-title">Телефон</p>
-                            <input type="tel" name="phone" class="form__input form__input-phone" placeholder="Ваш телефон">
+                            <input type="tel" name="phone" value="+7 (900) 800-70-60" class="form__input form__input-phone" placeholder="Ваш телефон">
+                            <p class="form__error-text">Проверьте введённый телефон</p>
                         </label>
+
                         <label class="form__item form__item-email">
                             <p class="form__item-title">Эл. почта</p>
-                            <input type="text" name="email" class="form__input form__input-email" placeholder="Ваш email">
+                            <input type="text" name="email" value="invalid@mail" class="form__input form__input-email" placeholder="Ваш email">
+                            <p class="form__error-text">Проверьте введённый email</p>
                         </label>
-                        <label class="form__item form__item-message">
+
+                        <label class="form__item form__item-textarea">
                             <p class="form__item-title">Сообщение</p>
-                            <textarea name="message" class="form__input form__input-textarea" placeholder="Введите сообщение" required></textarea>
+                            <textarea name="message" class="form__input form__input-textarea" placeholder="Введите сообщение" required>Добрый день!</textarea>
+                            <p class="form__error-text">Сообщение является обязательным полем</p>
                         </label>
                     </div>
-                    <div class="form__footer"></div>
+                    <div class="form__footer">
+                        <p class="form__privacy-note">Отправляя форму вы соглашаетесь с <a href="#" class="form__link">пользовательским соглашением</a> и <a href="#" class="form__link">политикой конфиденциальности</a></p>
+                        <button type="submit" class="form__submit-button">Отправить</button>
+                    </div>
                 </form>
             </div>
         </div>
