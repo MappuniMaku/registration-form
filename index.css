@@ -1,0 +1,32 @@
+p,
+h1,
+h2 {
+  margin: 0;
+}
+
+html {
+  font-family: "Roboto", sans-serif;
+}
+
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+.modal__window {
+  width: 600px;
+  border-radius: 5px;
+  background: #FFFFFF;
+  height: 400px;
+  margin: 100px auto;
+}
+.modal__header {
+  padding: 5px;
+  display: flex;
+  justify-content: space-around;
+}
+
+/*# sourceMappingURL=index.css.map */
