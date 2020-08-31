@@ -53,10 +53,56 @@ let checkEmail = function () {
     };
 };
 
+checkEmail();
+
+let checkPhone = function () {
+    let phoneRegexp = /^\+7\s\([0-9]{3}\)\s[0-9]{3}\-[0-9]{2}\-[0-9]{2}$/;
+    if (phoneRegexp.test(phoneInput.value)) {
+        phoneInput.closest('.form__item').classList.remove('form__item--error');
+        return true;
+    } else {
+        phoneInput.closest('.form__item').classList.add('form__item--error');
+        return false;
+    };
+};
+
+let setCursorPosition = function (pos, elem) {
+    elem.focus();
+    if (elem.setSelectionRange) {
+        elem.setSelectionRange(pos, pos);
+    } else if (elem.createTextRange) {
+        let range = elem.createTextRange();
+        range.collapse(true);
+        range.moveEnd("character", pos);
+        range.moveStart("character", pos);
+        range.select();
+    };
+};
+
+let mask = function (event) {
+    let matrix = "+7 (___) ___-__-__";
+    let i = 0;
+    let def = matrix.replace(/\D/g, "");
+    let val = this.value.replace(/\D/g, "");
+    if (def.length >= val.length) val = def;
+    this.value = matrix.replace(/./g, function(a) {
+        return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a;
+    });
+    if (event.type == "blur") {
+        if (this.value.length == 2) {
+            this.value = "";
+        };
+    } else {
+        setCursorPosition(this.value.length, this)
+    };
+};
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     checkEmptiness(nameInput);
+    checkEmptiness(messageInput);
     checkEmail();
+    checkPhone();
 });
 
 nameInput.addEventListener('input', () => {
@@ -70,3 +116,11 @@ messageInput.addEventListener('input', () => {
 emailInput.addEventListener('input', () => {
     checkEmail();
 })
+
+phoneInput.addEventListener('input', mask);
+phoneInput.addEventListener('focus', mask);
+phoneInput.addEventListener('blur', mask);
+
+phoneInput.addEventListener('input', () => {
+    checkPhone();
+});
