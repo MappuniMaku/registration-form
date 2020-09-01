@@ -97,8 +97,6 @@ let checkEmail = function () {
     };
 };
 
-checkEmail();
-
 let checkPhone = function () {
     let phoneRegexp = /^\+7\s\([0-9]{3}\)\s[0-9]{3}\-[0-9]{2}\-[0-9]{2}$/;
     let phoneValue = phoneInput.value;
@@ -151,7 +149,7 @@ let mask = function (event) {
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    
+
     let nameIsEmpty = checkEmptiness(nameInput);
     let messageIsEmpty = checkEmptiness(messageInput);
     let contactsAreInserted = checkContacts();
@@ -168,7 +166,7 @@ form.addEventListener('submit', (e) => {
                 alert('Форма отправлена успешно');
             } else if (this.readyState === XMLHttpRequest.DONE && this.status !== 200) {
                 console.log('Failure', this);
-                alert(`Ошибка, статус: ${this.status}`);
+                alert(`При отправке запроса возникла ошибка, статус: ${this.status}`);
             };
         };
 
