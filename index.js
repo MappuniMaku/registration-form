@@ -42,7 +42,9 @@ let removeErrorClass = function (elem) {
 };
 
 let checkEmptiness = function (elem) {
-    if (elem.value === '') {
+    let value = elem.value.trim();
+
+    if (value === '') {
         addErrorClass(elem);
         return true;
     } else {
@@ -148,11 +150,33 @@ let mask = function (event) {
 };
 
 form.addEventListener('submit', (e) => {
+    e.preventDefault();
     if (!checkEmptiness(nameInput) && !checkEmptiness(messageInput) && checkContacts() && checkPhone() && checkEmail()) {
-        alert('Форма отправлена');
+        let request = new XMLHttpRequest();
+
+        request.onreadystatechange = function () {
+            console.log(`ready state = ${this.readyState}; status = ${this.status}`);
+            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                console.log('Success', this);
+                alert('Форма отправлена успешно');
+            } else if (this.readyState === XMLHttpRequest.DONE && this.status !== 200) {
+                console.log('Failure', this);
+                alert(`Ошибка, статус: ${this.status}`);
+            };
+        };
+
+        request.open(form.method, form.action, true);
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        let data = new FormData(form);
+        for (let key of data.keys()) {
+            console.log(`${key}: ${data.get(key)}`);
+        }
+
+        request.send(data);
+
     } else {
-        e.preventDefault();
-        console.log('Ошибка');
+        console.log('Допущена ошибка при заполнении формы');
     };
 });
 
