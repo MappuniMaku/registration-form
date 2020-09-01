@@ -34,6 +34,7 @@ html {
   transition: background 0.3s ease-in;
 }
 .modal__window {
+  overflow: auto;
   max-width: 600px;
   background: #FFFFFF;
   min-height: 632px;

@@ -43,6 +43,7 @@ html {
     }
 
     &__window {
+        overflow: auto;
         max-width: 600px;
         background: #FFFFFF;
         min-height: 632px;
