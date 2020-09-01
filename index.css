@@ -73,6 +73,8 @@ html {
 }
 .form__item {
   margin-bottom: 20px;
+  position: relative;
+  padding-top: 14px;
 }
 .form__item-phone {
   margin-left: 12px;
@@ -96,8 +98,11 @@ html {
   font-size: 12px;
   line-height: 14px;
   color: #A5A5A5;
-  margin-left: 20px;
-  margin-bottom: 2px;
+  position: absolute;
+  top: 0;
+  left: 20px;
+  transition: all 0.2s;
+  cursor: pointer;
 }
 .form__input {
   font-family: inherit;
@@ -110,6 +115,19 @@ html {
   line-height: 22px;
   padding-left: 20px;
   color: #1C1C1C;
+}
+.form__input:placeholder-shown + .form__item-title {
+  transform-origin: left bottom;
+  transform: translateY(35px) scale(1.25);
+}
+.form__input::placeholder {
+  opacity: 0;
+}
+.form__input:focus::placeholder {
+  opacity: 1;
+}
+.form__input:not(:placeholder-shown) + .form__item-title, .form__input:focus + .form__item-title {
+  transform: translateY(0) scale(1);
 }
 .form__input-textarea {
   width: 492px;

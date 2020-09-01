@@ -151,7 +151,14 @@ let mask = function (event) {
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (!checkEmptiness(nameInput) && !checkEmptiness(messageInput) && checkContacts() && checkPhone() && checkEmail()) {
+    
+    let nameIsEmpty = checkEmptiness(nameInput);
+    let messageIsEmpty = checkEmptiness(messageInput);
+    let contactsAreInserted = checkContacts();
+    let phoneIsCorrect = checkPhone();
+    let emailIsCorrect = checkEmail();
+
+    if (!nameIsEmpty && !messageIsEmpty && contactsAreInserted && phoneIsCorrect && emailIsCorrect) {
         let request = new XMLHttpRequest();
 
         request.onreadystatechange = function () {
