@@ -30,34 +30,48 @@ const nameInput = form.querySelector('.form__input-name');
 const phoneInput = form.querySelector('.form__input-phone');
 const emailInput = form.querySelector('.form__input-email');
 const messageInput = form.querySelector('.form__input-textarea');
+const emailErrorText = emailInput.closest('.form__item').querySelector('.form__error-text');
+const phoneErrorText = phoneInput.closest('.form__item').querySelector('.form__error-text');
 
-const emailItem = emailInput.closest('.form__item');
-const phoneItem = phoneInput.closest('.form__item');
+let addErrorClass = function (elem) {
+    elem.closest('.form__item').classList.add('form__item--error');
+};
 
-const emailErrorNotification = emailItem.querySelector('.form__error-text');
-const phoneErrorNotification = phoneItem.querySelector('.form__error-text');
-
+let removeErrorClass = function (elem) {
+    elem.closest('.form__item').classList.remove('form__item--error');
+};
 
 let checkEmptiness = function (elem) {
     if (elem.value === '') {
-        elem.closest('.form__item').classList.add('form__item--error');
+        addErrorClass(elem);
         return true;
     } else {
-        elem.closest('.form__item').classList.remove('form__item--error');
+        removeErrorClass(elem);
         return false;
     };
 };
 
 let checkContacts = function () {
-    if (emailInput.value === '' && phoneInput.value === '') {
-        emailItem.classList.add('form__item--error');
-        phoneItem.classList.add('form__item--error');
-        emailErrorNotification.innerHTML = 'Введите email или телефон';
-        phoneErrorNotification.innerHTML = 'Введите email или телефон';
+    let phoneValue = phoneInput.value;
+    let emailValue = emailInput.value;
+
+    if (phoneValue === '' && emailValue === '') {
+        addErrorClass(emailInput);
+        addErrorClass(phoneInput);
+        emailErrorText.innerHTML = 'Введите email или телефон';
+        phoneErrorText.innerHTML = 'Введите email или телефон';
+
         return false;
     } else {
-        emailErrorNotification.innerHTML = 'Проверьте введённый email';
-        phoneErrorNotification.innerHTML = 'Проверьте введённый телефон';
+        emailErrorText.innerHTML = 'Проверьте введённый email';
+        phoneErrorText.innerHTML = 'Проверьте введённый телефон';
+
+        if (emailValue !== '' && phoneValue === '') {
+            removeErrorClass(phoneInput);
+        } else if (emailValue === '' && phoneValue !== '') {
+            removeErrorClass(emailInput);
+        };
+
         return true;
     };
 };
@@ -68,15 +82,16 @@ let checkEmail = function () {
 
     if (emailValue !== '') {
         if (emailRegexp.test(emailValue)) {
-            emailItem.classList.remove('form__item--error');
+            removeErrorClass(emailInput);
             return true;
         } else {
-            emailItem.classList.add('form__item--error');
+            addErrorClass(emailInput);
             return false;
         };
     } else {
-        emailItem.classList.remove('form__item--error');
+        removeErrorClass(emailInput);
         checkContacts();
+        return true;
     };
 };
 
@@ -88,15 +103,16 @@ let checkPhone = function () {
 
     if (phoneValue !== '') {
         if (phoneRegexp.test(phoneValue)) {
-            phoneItem.classList.remove('form__item--error');
+            removeErrorClass(phoneInput);
             return true;
         } else {
-            phoneItem.classList.add('form__item--error');
+            addErrorClass(phoneInput);
             return false;
         };
     } else {
-        phoneItem.classList.remove('form__item--error');
+        removeErrorClass(phoneInput);
         checkContacts();
+        return true;
     };
 };
 
@@ -132,12 +148,12 @@ let mask = function (event) {
 };
 
 form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    checkEmptiness(nameInput);
-    checkEmptiness(messageInput);
-    checkPhone();
-    checkEmail();
-    checkContacts();
+    if (!checkEmptiness(nameInput) && !checkEmptiness(messageInput) && checkContacts() && checkPhone() && checkEmail()) {
+        alert('Форма отправлена');
+    } else {
+        e.preventDefault();
+        console.log('Ошибка');
+    };
 });
 
 nameInput.addEventListener('input', () => {
