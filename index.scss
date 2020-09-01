@@ -16,7 +16,6 @@ html {
 
     &--open {
         
-        
         & .modal__window {
             opacity: 1;
             z-index: 99;
@@ -27,6 +26,7 @@ html {
             opacity: 1;
             z-index: 99;
             background: rgba(0, 0, 0, 0.5);
+            overflow: auto;
         }
     }
 
@@ -43,11 +43,10 @@ html {
     }
 
     &__window {
-        overflow: auto;
         max-width: 600px;
         background: #FFFFFF;
         min-height: 632px;
-        margin: 0 auto;
+        margin: 0 auto 20px auto;
         z-index: -1;
         opacity: 0;
         transform: translateY(-700px);

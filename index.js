@@ -129,6 +129,8 @@ let setCursorPosition = function (pos, elem) {
     };
 };
 
+// Основа кода для маски взята отсюда: https://javascript.ru/forum/dom-window/63870-kak-sdelat-masku-telefona-v-input-c-7-___-bez-jquery.html
+
 let mask = function (event) {
     let matrix = "+7 (___) ___-__-__";
     let i = 0;
