@@ -30,6 +30,21 @@ html {
         }
     }
 
+    &--closing {
+        & .modal__window {
+            opacity: 1;
+            z-index: 99;
+            transform: translateY(-700px);
+        }
+
+        & .modal__overlay {
+            opacity: 1;
+            z-index: 99;
+            background: rgba(0, 0, 0, 0);
+            overflow: auto;
+        }
+    }
+
     &__overlay {
         position: fixed;
         top: 0;
@@ -90,14 +105,14 @@ html {
     &__item {
         margin-bottom: 20px;
         position: relative;
-        padding-top: 14px;
+        padding-top: 16px;
 
         &-phone {
             margin-left: 12px;
         }
 
         &-textarea {
-            margin-bottom: 30px;
+            margin-bottom: 26px;
         }
 
         &--error {

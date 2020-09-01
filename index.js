@@ -1,12 +1,23 @@
 const modal = {
     modalDomElement: document.querySelector('.modal'),
     openButton: document.querySelector('.open-button'),
+    animationSpeed: 300,
+    isClosing: false,
+
     open () {
         this.modalDomElement.classList.add('modal--open');
         return this;
     },
     close () {
+        this.isClosing = true;
         this.modalDomElement.classList.remove('modal--open');
+        this.modalDomElement.classList.add('modal--closing');
+
+        setTimeout(() => {
+            this.modalDomElement.classList.remove('modal--closing');
+            this.isClosing = false;
+        }, this.animationSpeed);
+
         return this;
     },
     init () {
@@ -23,7 +34,7 @@ const modal = {
     }
 }
 
-modal.init();
+modal.init().open();
 
 const form = document.querySelector('.form');
 const nameInput = form.querySelector('.form__input-name');

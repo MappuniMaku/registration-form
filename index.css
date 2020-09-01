@@ -23,6 +23,17 @@ html {
   background: rgba(0, 0, 0, 0.5);
   overflow: auto;
 }
+.modal--closing .modal__window {
+  opacity: 1;
+  z-index: 99;
+  transform: translateY(-700px);
+}
+.modal--closing .modal__overlay {
+  opacity: 1;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0);
+  overflow: auto;
+}
 .modal__overlay {
   position: fixed;
   top: 0;
@@ -77,13 +88,13 @@ html {
 .form__item {
   margin-bottom: 20px;
   position: relative;
-  padding-top: 14px;
+  padding-top: 16px;
 }
 .form__item-phone {
   margin-left: 12px;
 }
 .form__item-textarea {
-  margin-bottom: 30px;
+  margin-bottom: 26px;
 }
 .form__item--error {
   margin-bottom: 17px;
